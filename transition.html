@@ -1,0 +1,73 @@
+<!--transition.html-->
+
+<html>
+<head>
+<title>D3 Tutorial</title>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+	<script>
+
+
+		
+		var width = 10000;
+		var height = 7500;
+		dataArray =[];
+	
+
+		var canvas = d3.select("body")
+						.append("svg")
+						.attr("width",width)
+						.attr("height",height);
+
+
+		var circle1 = canvas.append("circle")
+							.attr("r",200)
+							.attr("cx",1000)
+							.attr("cy",500)
+							.attr("fill","#EF6C00")
+
+		var circle2 = canvas.append("circle")
+							.attr("r",200)
+							.attr("cx",500)
+							.attr("cy",500)
+							.attr("fill","#2E3141")
+
+
+		circle1.transition()
+			.duration(1500)
+			.delay(1000)
+			.attr("cx",500)
+			.attr("cy",500)
+			.each("end",function(){d3.select(this).attr("fill","2E3141")});
+
+		/*circle2.exit()
+			.transition()
+			.duration(1500)
+			.delay(1000)
+			.attr("cx",1000)
+			.attr("cy",500)
+			.each("end",function(){d3.select(this).attr("fill","#EF6C00")}); */
+			
+
+		circles = canvas.selectall("circle").data(dataArray)
+								.append("circle")
+								.exit()
+									.append("circle")
+									.transition()
+										.duration(1500)
+										.delay(1000)
+										.attr("cx",1000)
+										.attr("cy",500)
+										.each("end",function(){d3.select(this).attr("fill","#EF6C00")});
+				
+
+		
+
+
+
+		
+
+	</script>
+</body>
+</html>
